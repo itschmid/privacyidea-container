@@ -36,6 +36,7 @@ Now you can access the Privacyidea website via http://docker:5001 and log in wit
 
 How to set up privacyidea can be found in the official [documentation](https://privacyidea.readthedocs.io/en/latest/) of [PrivacyIDEA](https://www.privacyidea.org/)
 
+
 ## License
 
 This repository, i.e. the building instructions for the container, is under MIT License.

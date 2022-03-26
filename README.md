@@ -22,7 +22,7 @@ The data can also be written directly to the Docker Compose file, the better var
 
 First you need to build the Docker image, run:
 
-	docker build -t privacyideadocker .
+	docker build -t privacyidea .
 
 Now when docker-compose is used, run:
 

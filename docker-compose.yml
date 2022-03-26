@@ -1,0 +1,50 @@
+version: '3.9' 
+services:
+  privacyidea:
+    image: privacyidea
+    container_name: privacyidea
+    environment:
+      - ADMIN_USER=${PI_ADMIN_USER}
+      - ADMIN_PASSWORD=${PI_ADMIN_PASSWORD}
+      - PI_DBDRIVER=pymysql
+      - PI_DB_USER=root
+      - PI_DB_PASS=${PI_MYSQL_ROOT_PASSWORD}
+      - PI_DB_HOST=pidb
+      - PI_DB_NAME=pi
+      - PI_SUPERUSER_REALM=${PI_SUPERUSER_REALM}
+    depends_on:
+      pidb:
+        condition: service_healthy
+
+    ports:
+      - "5001:5001"
+    volumes:
+      - pidata:/data
+      - pietc:/etc/privacyidea
+    links:
+      - pidb
+
+  pidb:
+    image: mariadb:latest
+    command: --transaction-isolation=READ-COMMITTED --log-bin=ROW
+    volumes:
+      - pidb_vol:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${PI_MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${PI_MYSQL_PASSWORD}
+      - MYSQL_DATABASE=pi
+      - MYSQL_USER=${PI_MYSQL_USER}
+      - MYSQL_INITDB_SKIP_TZINFO=1
+    ports:
+      - "3006:3006"
+    healthcheck:
+      test: "mysql -uroot -p$PI_MYSQL_ROOT_PASSWORD mysql -e 'select 1'"
+      interval: 1s
+      retries: 120
+
+
+
+volumes:
+  pidata:
+  pietc:
+  pidb_vol:

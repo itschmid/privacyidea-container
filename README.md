@@ -3,7 +3,7 @@
 
 [privacyIDEA](https://www.privacyidea.org/) is a modular authentication server that can be used to enhance the security of your existing applications like local login, VPN, remote access, SSH connections, access to web sites or web portals with two factor authentication. Originally it was used for OTP (One Time Password) authentication devices – being an OTP server. But other “devices” like challenge response, U2F, Yubikeys, SSH keys and x509 certificates are also available. It runs on Linux and is completely Open Source, licensed under the AGPLv3.
 
-This repository contains the blueprint to build your own PrivacyIdea container. Additionally, there is a docker-compose.yml file for running such a container with Mariadb.
+This repository contains the blueprint to build your own privacyIDEA container. Additionally, there is a docker-compose.yml file for running such a container with Mariadb.
 
 ## Preparing
 
@@ -24,20 +24,20 @@ First you need to build the Docker image, run:
 
 	docker build -t privacyidea .
 
-Now when docker-compose is used, run:
+Now, when docker-compose is used, run:
 
 	docker-compose up -d
 
-Next, a Mariadb container is deployed. The PrivacyIdea container is then started as soon as the database container is ready.
+Next, a Mariadb container is deployed. The privacyIDEA container is then started as soon as the database container is ready.
 
-Now you can access the Privacyidea website via http://docker:5001 and log in with the password and username entered in the .env.
+Now you can access the privacyIDEA website via http://docker:5001 and log in with the password and username entered in the .env.
 
 ## Documentation
 
-How to set up privacyidea can be found in the official [documentation](https://privacyidea.readthedocs.io/en/latest/) of [PrivacyIDEA](https://www.privacyidea.org/)
+How to set up privacyIDEA can be found in the official [documentation](https://privacyidea.readthedocs.io/en/latest/) of [privacyIDEA](https://www.privacyidea.org/)
 
 
 ## License
 
-This repository, i.e. the building instructions for the container, is under MIT License.
+This repository, i.e. the building instructions for the container, is under [MIT License](LICENSE).
 

@@ -11,6 +11,7 @@ pip install pymysql-sa PyMySQL uwsgi && \
 mkdir -p /etc/privacyidea && \
 mkdir -p /var/log/privacyidea && \
 mkdir -p /data && \
+mkdir -p /scripts && \
 chmod a+x /entrypoint.sh && \
 rm -r privacyidea
 
@@ -20,6 +21,7 @@ ENV PI_DBDRIVER=sqlite
 
 VOLUME /etc/privacyidea
 VOLUME /data
+VOLUME /scripts
 VOLUME /var/log/privacyidea
 EXPOSE 5001
 ENTRYPOINT ["/entrypoint.sh"]

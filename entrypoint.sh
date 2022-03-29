@@ -19,7 +19,14 @@ then
     echo "$ERG"
     echo "$ERG" >> /etc/privacyidea/pi.cfg
 
-    echo "DBDRIVER ===> $PI_DBDRIVER"
+    if [ -z "$PI_SCRIPT_HANDLER_DIRECTORY" ]; then
+	    echo "PI_SCRIPT_HANDLER_DIRECTORY = '/scripts'" >> /etc/privacyidea/pi.cfg
+    else
+	    echo "script handler directory was changed to $PI_SCRIPT_HANDLER_DIRECTORY"
+	    echo "PI_SCRIPT_HANDLER_DIRECTORY = $PI_SCRIPT_HANDLER_DIRECTORY" >> /etc/privacyidea/pi.cfg
+    fi
+
+    echo "DBDRIVER ===> $PI_DBDRIVER"    
 
     if [ "$PI_DBDRIVER" = "sqlite" ]; then
       echo "Create SQLITE"	   

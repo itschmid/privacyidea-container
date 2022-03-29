@@ -1,0 +1,20 @@
+[Unit]
+Description=PrivacyIdea Container Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker exec %n stop
+ExecStartPre=-/usr/bin/docker rm %n
+#ExecStartPre=/usr/bin/docker pull jetbrains/youtrack:<version>
+ExecStart=/usr/bin/docker run --rm --name %n 
+	--env-file ../.env-example \
+	-v ./data/data:/data \
+	-v ./data/etc/privacyidea:/etc/privacyidea
+	-p 5001:5001 \
+	privacyidea
+
+[Install]
+WantedBy=default.target

@@ -10,9 +10,11 @@ This repository contains the blueprint to build your own privacyIDEA container. 
 First, we create an .env file with the following content.
 The data can also be written directly to the Docker Compose file, the better variant is .env
 
-	PI_MYSQL_ROOT_PASSWORD=<mariadb root password>
-	PI_MYSQL_PASSWORD=<password for privacycidea database>
-	PI_MYSQL_USER=<username for privacyidea database>
+	MYSQL_ROOT_PASSWORD=<mariadb root password>
+	PI_DB_PASS=<password for privacycidea database>
+	PI_DB_USER=<username for privacyidea database>
+	PI_DB_HOST=<database hostname / ip>
+	PI_DB_NAME=<databasename>
 	PI_ADMIN_USER=<privacyidea username for first admin>
 	PI_ADMIN_PASSWORD=<privacyidea admin password>
 	PI_SUPERUSER_REALM=<optional superuser realm, e.g "tech, mega">

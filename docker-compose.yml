@@ -7,10 +7,10 @@ services:
       - ADMIN_USER=${PI_ADMIN_USER}
       - ADMIN_PASSWORD=${PI_ADMIN_PASSWORD}
       - PI_DBDRIVER=pymysql
-      - PI_DB_USER=root
-      - PI_DB_PASS=${PI_MYSQL_ROOT_PASSWORD}
-      - PI_DB_HOST=pidb
-      - PI_DB_NAME=pi
+      - PI_DB_USER=${PI_DB_USER}
+      - PI_DB_PASS=${PI_DB_PASS}
+      - PI_DB_HOST=${PI_DB_HOST}
+      - PI_DB_NAME=${PI_DB_NAME}
       - PI_SUPERUSER_REALM=${PI_SUPERUSER_REALM}
     depends_on:
       pidb:
@@ -30,15 +30,15 @@ services:
     volumes:
       - pidb_vol:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=${PI_MYSQL_ROOT_PASSWORD}
-      - MYSQL_PASSWORD=${PI_MYSQL_PASSWORD}
-      - MYSQL_DATABASE=pi
-      - MYSQL_USER=${PI_MYSQL_USER}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${PI_DB_PASS}
+      - MYSQL_DATABASE=${PI_DB_NAME}
+      - MYSQL_USER=${PI_DB_USER}
       - MYSQL_INITDB_SKIP_TZINFO=1
     ports:
       - "3006:3006"
     healthcheck:
-      test: "mysql -uroot -p$PI_MYSQL_ROOT_PASSWORD mysql -e 'select 1'"
+      test: "mysql -uroot -p$MYSQL_ROOT_PASSWORD mysql -e 'select 1'"
       interval: 1s
       retries: 120
 

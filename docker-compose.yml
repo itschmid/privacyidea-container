@@ -3,6 +3,7 @@ services:
   privacyidea:
     image: privacyidea
     container_name: privacyidea
+    restart: unless-stopped
     environment:
       - ADMIN_USER=${PI_ADMIN_USER}
       - ADMIN_PASSWORD=${PI_ADMIN_PASSWORD}
@@ -27,6 +28,7 @@ services:
   pidb:
     image: mariadb:latest
     command: --transaction-isolation=READ-COMMITTED --log-bin=ROW
+    restart: unless-stopped
     volumes:
       - pidb_vol:/var/lib/mysql
     environment:
